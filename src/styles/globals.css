@@ -1,5 +1,5 @@
 body {
-  background: #f9fafb; /* Fondo blanco claro */
+  background: #F0F3F9; /* Fondo blanco claro */
   background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
   background-size: 16px 16px; /* Ajusta el tamaño de los puntos */
   margin: 0;
@@ -42,3 +42,6 @@ header nav a:hover {
 /* globals.css */
 @import '~slick-carousel/slick/slick.css';
 @import '~slick-carousel/slick/slick-theme.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');

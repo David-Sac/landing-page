@@ -1,72 +1,92 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
+import { AppBar, Toolbar, Box, Typography, Button } from '@mui/material';
 
-const Header = () => {
+export default function Header() {
   return (
     <AppBar
-      position="sticky"
+      position="static"
       sx={{
-        backgroundColor: '#f9fafb', // Fondo claro
-        boxShadow: 'none',
-        borderBottom: '1px solid #e0e0e0', // Línea inferior
-        padding: '10px 20px',
+        backgroundColor: '#F0F3F9', // Fondo del header
+        boxShadow: 'none', // Sin sombra
+        borderBottom: 'none', // Sin línea inferior
       }}
     >
-      <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
-        {/* Título del Header alineado a la izquierda */}
+      <Toolbar
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between', // Espaciado entre logo y links
+          alignItems: 'center',
+          padding: { xs: '10px 20px', md: '10px 40px' },
+        }}
+      >
+        {/* Logo */}
         <Typography
           variant="h6"
           component="div"
           sx={{
+            color: '#4e649c', // Color azul similar
             fontWeight: 'bold',
-            color: '#333', // Color negro elegante
-            fontSize: '1.5rem',
+            fontFamily: '"Montserrat", sans-serif', // Fuente limpia y profesional
+            fontSize: '1.8rem', // Ajusta el tamaño para resaltar
+            letterSpacing: '-0.5px', // Espaciado ajustado entre letras
             cursor: 'pointer',
+            marginRight: '20px', // Espaciado hacia los links
           }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           Mi Landing Page
         </Typography>
 
-        {/* Navegación centrada */}
-        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+        {/* Navegación */}
+        <Box
+          sx={{
+            position: 'absolute', // Posiciona los links en el centro
+            left: '50%',
+            transform: 'translateX(-50%)', // Centra los links
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: '#e4e6ed', // Fondo blanco para los links
+            padding: '5px 15px',
+            borderRadius: '20px', // Bordes redondeados
+            boxShadow: 'none', // Sin sombra
+            gap: '15px',
+          }}
+        >
+          <Button
+            href="#"
+            sx={{
+              textTransform: 'none',
+              fontWeight: '500',
+              color: '#1a1a1a',
+              fontFamily: '"Poppins", sans-serif',
+              '&:hover': {
+                backgroundColor: '#e6eaf2', // Fondo más claro al pasar el mouse
+              },
+            }}
+          >
+            Home
+          </Button>
           <Button
             href="#about"
             sx={{
               textTransform: 'none',
-              color: '#555', // Color de texto gris oscuro
-              fontSize: '1rem',
-              margin: '0 15px',
+              fontWeight: '500',
+              color: '#1a1a1a',
+              fontFamily: '"Poppins", sans-serif',
               '&:hover': {
-                color: '#007BFF', // Cambia a azul al pasar el mouse
+                backgroundColor: '#e6eaf2',
               },
             }}
           >
-            Sobre Nosotros
-          </Button>
-          <Button
-            href="#video"
-            sx={{
-              textTransform: 'none',
-              color: '#555',
-              fontSize: '1rem',
-              margin: '0 15px',
-              '&:hover': {
-                color: '#007BFF',
-              },
-            }}
-          >
-            Video
+            About
           </Button>
           <Button
             href="#apps"
             sx={{
               textTransform: 'none',
-              color: '#555',
-              fontSize: '1rem',
-              margin: '0 15px',
+              fontWeight: '500',
+              color: '#1a1a1a',
+              fontFamily: '"Poppins", sans-serif',
               '&:hover': {
-                color: '#007BFF',
+                backgroundColor: '#e6eaf2',
               },
             }}
           >
@@ -76,20 +96,18 @@ const Header = () => {
             href="#contact"
             sx={{
               textTransform: 'none',
-              color: '#555',
-              fontSize: '1rem',
-              margin: '0 15px',
+              fontWeight: '500',
+              color: '#1a1a1a',
+              fontFamily: '"Poppins", sans-serif',
               '&:hover': {
-                color: '#007BFF',
+                backgroundColor: '#e6eaf2',
               },
             }}
           >
-            Contáctanos
+            Contact
           </Button>
         </Box>
       </Toolbar>
     </AppBar>
   );
-};
-
-export default Header;
+}

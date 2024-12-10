@@ -8,7 +8,6 @@ export default function AboutSection() {
       sx={{
         padding: { xs: '20px', md: '40px' },
         textAlign: 'center',
-        backgroundColor: '#f9fafb',
         borderRadius: '10px',
         marginTop: '20px',
       }}
@@ -26,11 +25,11 @@ export default function AboutSection() {
       {/* Botón Principal */}
       <Button
         variant="contained"
-        href="https://play.google.com/store/apps/dev?id=6950831628125377421" // Enlace a Google Play
+        href="https://play.google.com/store/apps/dev?id=6950831628152377421" // Enlace a Google Play
         target="_blank"
         rel="noopener noreferrer"
         sx={{
-          backgroundColor: '#0070f3',
+          backgroundColor: '#3a6c91 ',
           color: '#fff',
           textTransform: 'none',
           borderRadius: '20px',
@@ -56,18 +55,18 @@ export default function AboutSection() {
           marginTop: '20px',
         }}
       >
-        {/* Etiquetas */}
-        <Tag label="React Native" link="https://reactnative.dev" />
-        <Tag label="Flutter" link="https://flutter.dev" />
-        <Tag label="Java" link="https://www.java.com" />
-        <Tag label="Kotlin" link="https://kotlinlang.org" />
+        {/* Etiquetas con Iconos */}
+        <Tag label="React Native" link="https://reactnative.dev" icon="/icons/react-svgrepo-com.svg" />
+        <Tag label="Flutter" link="https://flutter.dev" icon="/icons/flutter-svgrepo-com.svg" />
+        <Tag label="Java" link="https://www.java.com" icon="/icons/java-svgrepo-com.svg" />
+        <Tag label="Kotlin" link="https://kotlinlang.org" icon="/icons/kotlin-svgrepo-com.svg" />
       </Box>
     </Box>
   );
 }
 
 /* Componente Etiqueta Personalizado */
-function Tag({ label, link }: { label: string; link: string }) {
+function Tag({ label, link, icon }: { label: string; link: string; icon: string }) {
   return (
     <a
       href={link}
@@ -84,7 +83,7 @@ function Tag({ label, link }: { label: string; link: string }) {
           justifyContent: 'center',
           padding: '5px 15px',
           borderRadius: '20px',
-          backgroundColor: '#f0f0f0',
+          backgroundColor: '#F0F3F9',
           color: '#1a1a1a',
           fontWeight: '500',
           fontSize: '0.875rem',
@@ -96,6 +95,16 @@ function Tag({ label, link }: { label: string; link: string }) {
           },
         }}
       >
+        {/* Icono */}
+        <img
+          src={icon}
+          alt={`${label} icon`}
+          style={{
+            width: '20px',
+            height: '20px',
+            marginRight: '10px',
+          }}
+        />
         {label}
       </Box>
     </a>

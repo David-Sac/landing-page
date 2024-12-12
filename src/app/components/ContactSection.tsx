@@ -1,15 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Grid } from '@mui/material';
+import emailjs from 'emailjs-com';
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState<{ nombre: string; email: string; mensaje: string }>({
+  const [formData, setFormData] = useState({
     nombre: '',
     email: '',
     mensaje: '',
   });
-  const [status, setStatus] = useState<string>('');
+
+  const [status, setStatus] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,19 +21,27 @@ export default function ContactSection() {
     e.preventDefault();
     setStatus('Enviando...');
     try {
-      const response = await fetch('http://localhost:5000/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // Envía el correo con EmailJS
+      const result = await emailjs.send(
+        'service_vk3b3jf', // Reemplaza con tu Service ID de EmailJS
+        'template_2piw3d2', // Tu Template ID
+        {
+          from_name: formData.nombre, // Nombre del remitente
+          to_name: 'Mi Landing Page', // Nombre fijo de tu página
+          from_email: formData.email, // Correo del remitente
+          message: formData.mensaje, // Mensaje escrito por el usuario
+        },
+        'dFeitRGHwoA2Wut-1' // Reemplaza con tu clave pública de EmailJS
+      );
 
-      if (response.ok) {
+      if (result.status === 200) {
         setStatus('Mensaje enviado exitosamente.');
         setFormData({ nombre: '', email: '', mensaje: '' });
       } else {
         setStatus('Error al enviar el mensaje. Intenta nuevamente.');
       }
     } catch (error) {
+      console.error('Error al enviar el correo:', error);
       setStatus('Error al enviar el mensaje. Intenta nuevamente.');
     }
   };
@@ -43,7 +53,7 @@ export default function ContactSection() {
         backgroundColor: '#f9fafb',
         borderRadius: '30px',
         marginTop: '40px',
-        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)', // Sombra suave
+        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
       }}
     >
       <Grid container spacing={4}>
@@ -83,24 +93,24 @@ export default function ContactSection() {
             }}
           >
             <TextField
-              name="nombre"
               label="Nombre"
+              name="nombre"
               variant="outlined"
               fullWidth
               value={formData.nombre}
               onChange={handleChange}
             />
             <TextField
-              name="email"
               label="Correo Electrónico"
+              name="email"
               variant="outlined"
               fullWidth
               value={formData.email}
               onChange={handleChange}
             />
             <TextField
-              name="mensaje"
               label="Mensaje"
+              name="mensaje"
               variant="outlined"
               multiline
               rows={4}
@@ -123,10 +133,12 @@ export default function ContactSection() {
             >
               Enviar
             </Button>
-            <Typography variant="body2" sx={{ marginTop: '10px', color: '#555' }}>
+          </Box>
+          {status && (
+            <Typography variant="body2" sx={{ marginTop: '20px', color: '#555' }}>
               {status}
             </Typography>
-          </Box>
+          )}
         </Grid>
 
         {/* Columna 3: Información adicional */}
@@ -135,15 +147,7 @@ export default function ContactSection() {
             Información
           </Typography>
           <Box>
-            <Typography
-              variant="body2"
-              sx={{
-                marginBottom: '5px',
-                display: 'flex',
-                alignItems: 'center',
-                color: '#555',
-              }}
-            >
+            <Typography variant="body2" sx={{ marginBottom: '5px', display: 'flex', alignItems: 'center', color: '#555' }}>
               <img
                 src="/icons/gmail.svg"
                 alt="Email Icon"
@@ -151,15 +155,7 @@ export default function ContactSection() {
               />
               Elideeduardoportocarreroburga@gmail.com
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                marginBottom: '5px',
-                display: 'flex',
-                alignItems: 'center',
-                color: '#555',
-              }}
-            >
+            <Typography variant="body2" sx={{ marginBottom: '5px', display: 'flex', alignItems: 'center', color: '#555' }}>
               <img
                 src="/icons/cell.svg"
                 alt="Phone Icon"
@@ -167,14 +163,7 @@ export default function ContactSection() {
               />
               +51 948 011 627
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                color: '#555',
-              }}
-            >
+            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', color: '#555' }}>
               <img
                 src="/icons/mundo.svg"
                 alt="Location Icon"
